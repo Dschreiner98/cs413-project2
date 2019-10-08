@@ -11,6 +11,8 @@ var score = 0;
 
 var time = 30;
 
+//PIXI.sound.add('dead', 'dead.wav');
+//PIXI.sound.add('win', 'Win.wav');
 
 //Game over text
 gameOver = new PIXI.Text("GAME OVER \nThe Ghost hunters\ngot you!");
@@ -149,6 +151,7 @@ function animate()
         {
             if(i != rand)
             {
+              PIXI.sound.play('dead');
                 stage.addChild(gameOver);
                 stage.addChild(restart);
                 
@@ -162,6 +165,7 @@ function animate()
         }
         if(score>1)
         {
+            PIXI.sound.play('win');
             stage.addChild(youWin);
             stage.addChild(restart);
             
