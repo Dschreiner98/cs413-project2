@@ -32,6 +32,12 @@ restart.click = function(e)
 	location.reload();
 };
 
+//Welcome screen
+welcome = new PIXI.Text("Welcome the the Haunting Game!\n         Press space to begin!");
+welcome.x = 5;
+welcome.y = 100;
+stage.addChild(welcome)
+
 
 var playerTexture = PIXI.Texture.from("Ghost.png");
 
@@ -46,9 +52,9 @@ player.position.y = 200;
 //Shrink ghost 
 player.scale.x = .3;
 player.scale.y = .3;
-stage.addChild(player);
 
-//HOuse creation for game
+
+//House creation for game
 var houseTexture = PIXI.Texture.from("House.png");
 
 var houses = [];
@@ -65,23 +71,23 @@ houses.push(house4);
 
 house.position.x = 350;
 house.position.y = 350;
-stage.addChild(house);
+
 
 house1.position.x = 100;
 house1.position.y = 300;
-stage.addChild(house1);
+
 
 house2.position.x = 300;
 house2.position.y = 50;
-stage.addChild(house2);
+
 
 house3.position.x = 50;
 house3.position.y = 50;
-stage.addChild(house3);
+
 
 house4.position.x = 50;
 house4.position.y = 150;
-stage.addChild(house4);
+
 
 //Light creation for game
 var lightTexture = PIXI.Texture.from("Light.png");
@@ -94,19 +100,32 @@ var light = new PIXI.Sprite(lightTexture);
 function keydownEventHandler(e) {
 
     if (e.keyCode == 87) { // W key
-      player.position.y -= 10;
+      var newy = player.position.y - 40;
+      createjs.Tween.get(player.position).to({x: player.position.x, y: newy}, 500);
     }
   
     if (e.keyCode == 83) { // S key
-      player.position.y += 10;
+      var newy = player.position.y + 40;
+      createjs.Tween.get(player.position).to({x: player.position.x, y: newy}, 500);
     }
-  
     if (e.keyCode == 65) { // A key
-      player.position.x -= 10;
+      var newx = player.position.x - 40;
+      createjs.Tween.get(player.position).to({x: newx, y: player.position.y}, 500);
     }
   
     if (e.keyCode == 68) { // D key
-      player.position.x += 10;
+      var newx = player.position.x + 40;
+      createjs.Tween.get(player.position).to({x: newx, y: player.position.y}, 500);
+    }
+    
+    if (e.keyCode == 32) {
+      stage.addChild(player);
+      stage.addChild(house);
+      stage.addChild(house1);
+      stage.addChild(house2);
+      stage.addChild(house3);
+      stage.addChild(house4);
+      stage.removeChild(welcome)
     }
   }
 
