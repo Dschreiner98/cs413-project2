@@ -128,7 +128,7 @@ function animate()
         && (houseCoordinates.y +houseCoordinates.height/2) + houseCoordinates.height > (ghostBounds.y + ghostBounds.height/2) 
         && (houseCoordinates.y+houseCoordinates.height/2) < (ghostBounds.y + ghostBounds.height/2) + ghostBounds.height)
         {
-            if(i == rand)
+            if(i != rand)
             {
                 stage.addChild(gameOver);
                 stage.addChild(restart);
